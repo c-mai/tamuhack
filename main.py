@@ -13,11 +13,11 @@ def success(name):
 @app.route('/login',methods = ['POST', 'GET'])
 def login():
    if request.method == 'POST':
-      user = request.form['nm']
-      return redirect(url_for('success',name = user))
+      location = request.form['nm']
+      return redirect(url_for('success',name = location))
    else:
-      user = request.args.get('nm')
-      return redirect(url_for('success',name = user))
+      location = request.args.get('nm')
+      return redirect(url_for('success',name = location))
   
 if __name__ == '__main__':
    app.run(debug = True)
