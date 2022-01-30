@@ -15,7 +15,7 @@
 # [START gae_python38_app]
 # [START gae_python3_app]
 from flask import Flask, render_template, request, redirect, url_for
-
+from disaster import disaster_api_call
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
@@ -27,18 +27,18 @@ def index():
     """Return a friendly HTTP greeting."""
     return render_template("index.html")
 
-@app.route('/success/<name>')
-def success(name):
-   return 'you live in: %s' % name
+@app.route('/success/<location>')
+def success(location):
+   return render_template("success.html", loc = location, data = str(disaster_api_call(location)))
   
 @app.route('/location',methods = ['POST', 'GET'])
-def location():
+def location_submission():
    if request.method == 'POST':
-      user = request.form['nm']
-      return redirect(url_for('success',name = user))
+      loc = request.form['nm']
+      return redirect(url_for('success',location = loc))
    else:
-      user = request.args.get('nm')
-      return redirect(url_for('success',name = user))
+      loc = request.args.get('nm')
+      return redirect(url_for('success',location = loc))
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App

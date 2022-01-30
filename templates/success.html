@@ -1,0 +1,13 @@
+<!doctype html>
+<title>Hello from Flask</title>
+{% if loc %}
+  <h1>Hello {{ loc }}!</h1>
+{% else %}
+  <h1>Hello, World!</h1>
+{% endif %}
+
+{% if data %}
+  <h1>{{ data }}</h1>
+{% else %}
+  <h1>There is no data here</h1>
+{% endif %}

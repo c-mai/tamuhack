@@ -25,11 +25,10 @@ def disaster_api_call (state):
 
         count += 1
 
-    for key, value in disaster_dict.items():
-        print(key, ' : ', value)
+    return disaster_dict
 
 
-def recommendation():
+# def recommendation():
 
 
 
