@@ -14,7 +14,7 @@
 
 # [START gae_python38_app]
 # [START gae_python3_app]
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
@@ -27,6 +27,18 @@ def index():
     """Return a friendly HTTP greeting."""
     return render_template("index.html")
 
+@app.route('/success/<name>')
+def success(name):
+   return 'you live in: %s' % name
+  
+@app.route('/location',methods = ['POST', 'GET'])
+def location():
+   if request.method == 'POST':
+      user = request.form['nm']
+      return redirect(url_for('success',name = user))
+   else:
+      user = request.args.get('nm')
+      return redirect(url_for('success',name = user))
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
