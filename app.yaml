@@ -13,3 +13,6 @@
 # limitations under the License.
 
 runtime: python39
+
+resources:
+  memory_gb: 4
